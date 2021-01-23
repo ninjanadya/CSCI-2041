@@ -1,0 +1,630 @@
+OpenParenToken
+SymbolToken *
+SymbolToken Nadya
+SymbolToken Postolaki
+SymbolToken SCAN.
+SymbolToken Token
+SymbolToken scanner
+SymbolToken for
+SymbolToken the
+SymbolToken Pure
+SymbolToken Lisp
+SymbolToken interpreter.
+SymbolToken James
+SymbolToken Moen
+NumberToken 17
+SymbolToken Nov
+NumberToken 19
+SymbolToken *
+CloseParenToken
+OpenParenToken
+SymbolToken *
+SymbolToken TOKEN.
+SymbolToken A
+SymbolToken token.
+SymbolToken *
+CloseParenToken
+SymbolToken type
+SymbolToken token
+SymbolToken =
+SymbolToken CloseParenToken
+SymbolToken |
+SymbolToken EndToken
+SymbolToken |
+SymbolToken NumberToken
+SymbolToken of
+SymbolToken int
+SymbolToken |
+SymbolToken OpenParenToken
+SymbolToken |
+SymbolToken SymbolToken
+SymbolToken of
+SymbolToken string
+SymbolToken ;;
+OpenParenToken
+SymbolToken *
+SymbolToken MAKE
+SymbolToken SCANNER.
+SymbolToken Return
+SymbolToken a
+SymbolToken function
+SymbolToken NEXT
+SymbolToken TOKEN
+SymbolToken that
+SymbolToken reads
+SymbolToken TOKENs
+SymbolToken from
+SymbolToken a
+SymbolToken file
+SymbolToken with
+SymbolToken pathname
+SymbolToken PATH.
+SymbolToken OCaml
+SymbolToken RAISEs
+SymbolToken an
+SymbolToken exception
+SymbolToken if
+SymbolToken there\'s
+SymbolToken no
+SymbolToken such
+SymbolToken file.
+SymbolToken *
+CloseParenToken
+SymbolToken let
+SymbolToken makeScanner
+SymbolToken path
+SymbolToken =
+OpenParenToken
+SymbolToken *
+SymbolToken INPUT.
+SymbolToken Read
+SymbolToken chars
+SymbolToken from
+SymbolToken this
+SymbolToken channel.
+SymbolToken *
+CloseParenToken
+SymbolToken let
+SymbolToken input
+SymbolToken =
+OpenParenToken
+SymbolToken open_in
+SymbolToken path
+CloseParenToken
+SymbolToken in
+OpenParenToken
+SymbolToken *
+SymbolToken CH.
+SymbolToken The
+SymbolToken char
+SymbolToken most
+SymbolToken recently
+SymbolToken read
+SymbolToken from
+SymbolToken INPUT.
+SymbolToken *
+CloseParenToken
+SymbolToken let
+SymbolToken ch
+SymbolToken =
+SymbolToken ref
+SymbolToken \'
+SymbolToken \'
+SymbolToken in
+OpenParenToken
+SymbolToken *
+SymbolToken NEXT
+SymbolToken CHAR.
+SymbolToken Advance
+SymbolToken CH
+SymbolToken to
+SymbolToken the
+SymbolToken next
+SymbolToken char
+SymbolToken from
+SymbolToken INPUT,
+SymbolToken or
+SymbolToken to
+SymbolToken \'\\000\'
+SymbolToken if
+SymbolToken we\'re
+SymbolToken at
+SymbolToken the
+SymbolToken end
+SymbolToken of
+SymbolToken INPUT.
+SymbolToken *
+CloseParenToken
+SymbolToken let
+SymbolToken nextChar
+OpenParenToken
+CloseParenToken
+SymbolToken =
+SymbolToken try
+SymbolToken ch
+SymbolToken :=
+SymbolToken input_char
+SymbolToken input
+SymbolToken with
+SymbolToken End_of_file
+SymbolToken -->
+SymbolToken ch
+SymbolToken :=
+SymbolToken \'\\000\'
+SymbolToken in
+SymbolToken let
+SymbolToken nextEndToken
+OpenParenToken
+CloseParenToken
+SymbolToken =
+SymbolToken EndToken
+SymbolToken in
+SymbolToken \t
+SymbolToken let
+SymbolToken nextOpenParenToken
+OpenParenToken
+CloseParenToken
+SymbolToken =
+SymbolToken \tnextChar
+OpenParenToken
+CloseParenToken
+SymbolToken ;
+SymbolToken \tOpenParenToken
+SymbolToken in
+SymbolToken let
+SymbolToken nextCloseParenToken
+OpenParenToken
+CloseParenToken
+SymbolToken =
+SymbolToken \tnextChar
+OpenParenToken
+CloseParenToken
+SymbolToken ;
+SymbolToken \tCloseParenToken
+SymbolToken in
+SymbolToken let
+SymbolToken rec
+SymbolToken nextNumberToken
+SymbolToken prefix
+SymbolToken =
+SymbolToken \tmatch
+SymbolToken !ch
+SymbolToken with
+SymbolToken \t\t\'\\000\'\t->
+SymbolToken NumberToken
+OpenParenToken
+SymbolToken int_of_string
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t\'\\n\'\t->
+SymbolToken NumberToken
+OpenParenToken
+SymbolToken int_of_string
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t\'
+SymbolToken \'\t->
+SymbolToken NumberToken
+OpenParenToken
+SymbolToken int_of_string
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t\'
+OpenParenToken
+SymbolToken \'\t->
+SymbolToken NumberToken
+OpenParenToken
+SymbolToken int_of_string
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t\'
+CloseParenToken
+SymbolToken \'\t->
+SymbolToken NumberToken
+OpenParenToken
+SymbolToken int_of_string
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t_\t->
+SymbolToken nextChar
+OpenParenToken
+CloseParenToken
+SymbolToken ;
+SymbolToken nextNumberToken
+OpenParenToken
+SymbolToken prefix
+SymbolToken ^
+SymbolToken Char.escaped
+SymbolToken !ch
+CloseParenToken
+SymbolToken in
+SymbolToken \t
+SymbolToken let
+SymbolToken rec
+SymbolToken nextSymbolToken
+SymbolToken prefix
+SymbolToken =
+SymbolToken \tmatch
+SymbolToken !ch
+SymbolToken with
+SymbolToken \t\t\'\\000\'\t->
+SymbolToken SymbolToken
+OpenParenToken
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t\'\\n\'\t->
+SymbolToken SymbolToken
+OpenParenToken
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t\'
+SymbolToken \'\t->
+SymbolToken SymbolToken
+OpenParenToken
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t\'
+OpenParenToken
+SymbolToken \'\t->
+SymbolToken SymbolToken
+OpenParenToken
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t\'
+CloseParenToken
+SymbolToken \'\t->
+SymbolToken SymbolToken
+OpenParenToken
+SymbolToken prefix
+CloseParenToken
+SymbolToken |
+SymbolToken \t\t_\t->
+SymbolToken nextChar
+OpenParenToken
+CloseParenToken
+SymbolToken ;
+SymbolToken nextSymbolToken
+OpenParenToken
+SymbolToken prefix
+SymbolToken ^
+SymbolToken Char.escaped
+SymbolToken !ch
+CloseParenToken
+SymbolToken in
+SymbolToken let
+SymbolToken nextNumberOrSymbolToken
+OpenParenToken
+CloseParenToken
+SymbolToken =
+SymbolToken \tmatch
+SymbolToken !ch
+SymbolToken with
+SymbolToken \t\t\'0\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t\'1\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t\'2\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t\'3\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t\'4\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t\'5\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t\'6\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t\'7\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t\'8\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t\'9\'\t->
+SymbolToken nextNumberToken
+SymbolToken "-"|
+SymbolToken \t\t_\t->
+SymbolToken nextSymbolToken
+SymbolToken "-"
+SymbolToken in
+SymbolToken let
+SymbolToken rec
+SymbolToken nextToken
+OpenParenToken
+CloseParenToken
+SymbolToken =
+SymbolToken \tmatch
+SymbolToken !ch
+SymbolToken with
+SymbolToken \t\'\\000\'\t->
+SymbolToken nextEndToken
+OpenParenToken
+CloseParenToken
+SymbolToken |
+SymbolToken \t\'\\
+SymbolToken \'\t->
+SymbolToken nextChar
+OpenParenToken
+CloseParenToken
+SymbolToken ;
+SymbolToken nextToken
+OpenParenToken
+CloseParenToken
+SymbolToken |
+SymbolToken \t\'\\n\'\t->
+SymbolToken nextChar
+OpenParenToken
+CloseParenToken
+SymbolToken ;
+SymbolToken nextToken
+OpenParenToken
+CloseParenToken
+SymbolToken |
+SymbolToken \t\'
+OpenParenToken
+SymbolToken \'\t->
+SymbolToken nextOpenParenToken
+OpenParenToken
+CloseParenToken
+SymbolToken |
+SymbolToken \t\'
+CloseParenToken
+SymbolToken \'\t->
+SymbolToken nextCloseParenToken
+OpenParenToken
+CloseParenToken
+SymbolToken |
+SymbolToken \t\'-\'\t->
+SymbolToken nextNumberOrSymbolToken
+OpenParenToken
+CloseParenToken
+SymbolToken |
+SymbolToken \t\'0\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t\'1\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t\'2\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t\'3\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t\'4\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t\'5\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t\'6\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t\'7\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t\'8\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t\'9\'\t->
+SymbolToken nextNumberToken
+SymbolToken ""|
+SymbolToken \t_\t->
+SymbolToken nextSymbolToken
+SymbolToken ""
+OpenParenToken
+SymbolToken *
+SymbolToken Finally
+SymbolToken initialize
+SymbolToken CH,
+SymbolToken and
+SymbolToken return
+SymbolToken NEXT
+SymbolToken TOKEN
+SymbolToken as
+SymbolToken promised.
+SymbolToken *
+CloseParenToken
+SymbolToken in
+SymbolToken nextChar
+OpenParenToken
+CloseParenToken
+SymbolToken ;
+SymbolToken nextToken
+SymbolToken ;;
+OpenParenToken
+SymbolToken *
+SymbolToken NEXT
+SymbolToken TOKENS.
+SymbolToken Test
+SymbolToken the
+SymbolToken token
+SymbolToken scanner
+SymbolToken by
+SymbolToken reading
+SymbolToken tokens
+SymbolToken from
+SymbolToken the
+SymbolToken file
+SymbolToken whose
+SymbolToken pathname
+SymbolToken is
+SymbolToken PATH,
+SymbolToken and
+SymbolToken writing
+SymbolToken one-line
+SymbolToken descriptions
+SymbolToken of
+SymbolToken each
+SymbolToken token.
+SymbolToken *
+CloseParenToken
+SymbolToken let
+SymbolToken nextTokens
+SymbolToken path
+SymbolToken =
+SymbolToken let
+SymbolToken nextToken
+SymbolToken =
+SymbolToken makeScanner
+SymbolToken path
+SymbolToken in
+SymbolToken let
+SymbolToken rec
+SymbolToken nextTokensing
+SymbolToken token
+SymbolToken =
+SymbolToken match
+SymbolToken token
+SymbolToken with
+SymbolToken CloseParenToken
+SymbolToken -->
+SymbolToken Printf.printf
+SymbolToken "CloseParenToken\\n"
+SymbolToken ;
+SymbolToken nextTokensing
+OpenParenToken
+SymbolToken nextToken
+OpenParenToken
+CloseParenToken
+CloseParenToken
+SymbolToken |
+SymbolToken EndToken
+SymbolToken -->
+SymbolToken Printf.printf
+SymbolToken "EndToken\\n"
+SymbolToken |
+SymbolToken NumberToken
+SymbolToken number
+SymbolToken -->
+SymbolToken Printf.printf
+SymbolToken "NumberToken
+SymbolToken %i\\n"
+SymbolToken number
+SymbolToken ;
+SymbolToken nextTokensing
+OpenParenToken
+SymbolToken nextToken
+OpenParenToken
+CloseParenToken
+CloseParenToken
+SymbolToken |
+SymbolToken OpenParenToken
+SymbolToken -->
+SymbolToken Printf.printf
+SymbolToken "OpenParenToken\\n"
+SymbolToken ;
+SymbolToken nextTokensing
+OpenParenToken
+SymbolToken nextToken
+OpenParenToken
+CloseParenToken
+CloseParenToken
+SymbolToken |
+SymbolToken SymbolToken
+SymbolToken string
+SymbolToken -->
+SymbolToken Printf.printf
+SymbolToken "SymbolToken
+SymbolToken \\"%s\\"\\n"
+SymbolToken string
+SymbolToken ;
+SymbolToken nextTokensing
+OpenParenToken
+SymbolToken nextToken
+OpenParenToken
+CloseParenToken
+CloseParenToken
+SymbolToken in
+SymbolToken nextTokensing
+OpenParenToken
+SymbolToken nextToken
+OpenParenToken
+CloseParenToken
+CloseParenToken
+SymbolToken ;;
+OpenParenToken
+SymbolToken *
+SymbolToken Try
+SymbolToken reading
+SymbolToken tokens
+SymbolToken from
+SymbolToken EXCLAIM.
+SymbolToken *
+CloseParenToken
+SymbolToken nextTokens
+SymbolToken "exclaim"
+SymbolToken ;;
+OpenParenToken
+SymbolToken *
+SymbolToken You
+SymbolToken should
+SymbolToken see
+SymbolToken the
+SymbolToken following
+SymbolToken printed:
+SymbolToken OpenParenToken
+SymbolToken SymbolToken
+SymbolToken "define"
+SymbolToken SymbolToken
+SymbolToken "!"
+SymbolToken OpenParenToken
+SymbolToken SymbolToken
+SymbolToken "lambda"
+SymbolToken OpenParenToken
+SymbolToken SymbolToken
+SymbolToken "n"
+SymbolToken CloseParenToken
+SymbolToken OpenParenToken
+SymbolToken SymbolToken
+SymbolToken "if"
+SymbolToken OpenParenToken
+SymbolToken SymbolToken
+SymbolToken "="
+SymbolToken SymbolToken
+SymbolToken "n"
+SymbolToken NumberToken
+NumberToken 0
+SymbolToken CloseParenToken
+SymbolToken NumberToken
+NumberToken 1
+SymbolToken OpenParenToken
+SymbolToken SymbolToken
+SymbolToken "\226\136\151"
+SymbolToken SymbolToken
+SymbolToken "n"
+SymbolToken OpenParenToken
+SymbolToken SymbolToken
+SymbolToken "!"
+SymbolToken OpenParenToken
+SymbolToken SymbolToken
+SymbolToken "\226\136\146"
+SymbolToken SymbolToken
+SymbolToken "n"
+SymbolToken NumberToken
+NumberToken 1
+SymbolToken CloseParenToken
+SymbolToken CloseParenToken
+SymbolToken CloseParenToken
+SymbolToken CloseParenToken
+SymbolToken CloseParenToken
+SymbolToken CloseParenToken
+SymbolToken EndToken
+SymbolToken *
+CloseParenToken
+EndToken

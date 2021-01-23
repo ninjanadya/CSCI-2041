@@ -1,0 +1,65 @@
+(*Nadya Postolaki
+CSCI 2041 Lab 1
+09/10/2019*)
+
+(*Your functions must use the OCaml’s if–then–else, let–in, and let–rec–in, as discussed in the lectures. They must also use the OCaml functions hd, tl, and :: (cons), also as discussed in the lectures. You will receive NO POINTS for this assignment if your functions work without using these.*)
+
+(*Your first function must be called member, and it must accept two arguments, e and l. The argument e may be any object. The argument l must be a list of objects with the same type as e. The call member e l must return true if e appears at least once as an element of l, and it must return false otherwise. The type of member must be 'a -> 'a list -> bool. Here are some examples of how member must work, where the symbol ‘⇒’ means returns.*)
+
+(*Hints: write a recursion with two base cases and a recursive case. The first base case detects when l is empty. The second base case detects when e is the first element of l. The recursive case examines all elements of l except the first element.*)
+
+(*let rec member e l = *)
+
+(*	1) 	Check if l is empty
+			if yes, return false
+			if no, do the following:
+		check the head if e matches with head (hd) of list.
+			if yes, return true
+			if no, check whether there are remaining elements
+				if yes, create a new list with the remaining elements using tail (tl) function and check e
+			if no, return false
+*)
+
+
+(*Delete. Your second function must be called delete, and it must accept two arguments e and l. Just as in member, e may be any object, and l must be a list of objects with the same type as e. The call delete e l must return a list like l, but without any e’s as elements. The type of delete must be 'a -> 'a list -> 'a list. Here are some examples of how delete must work.*)
+
+(*Hints: This function should also have two base cases and a recursive case. The first base case detects when l is empty, and the second detects when e is the first element of l. The recursive case must use ::.*)
+
+(*
+	1) check if e is in l/if l is empty with member
+		if false, return list
+		if true, continue below:
+	
+	2) create a new empty list
+		find e in l and delete it by making a recursive method:
+		check if head of list matches with e
+			if yes, make a new list with the tail.
+				repeat step 1 with new list and e
+			if no, combine existing list with head of list from input and repeat step 1 with e and tail
+
+(*Mean. Your third function must be called mean, and it must accept one argument l, a list of one or more float numbers. The call mean l must return the arithmetic mean (average) of all the numbers in l. You may assume l will never be empty, so mean [] may be undefined. The type of mean must be float list -> float. Here are some examples of how mean must work.*)
+
+(*Hints: The arithmetic operators for float’s have annoying names that end with dots: +., -., *., and /.. The usual operators =, <>, <, >, <= and >=, work for floats without dots. Also, OCaml does not coerce int’s to float’s, so 0 is different from 0.0.
+      The best way to write mean is to use two ‘‘helper’’ functions, which might be called len and sum. The function len returns the number of elements in l as a float. The function sum adds all the elements in l and returns their total as a float. These helper functions might be defined inside mean, using let–rec–in.*)
+
+(*
+	*mean must be a float type, can assume l will never be empty
+	1) Find length of the list, store it in variable "divisor"
+	2) Create a variable "dividend"
+	3) Check is l empty:
+		if yes, continue to step 4
+		if no, change dividend == dividend + hd, then send tail though as l
+	4) Create a variable "quotient" where quotient == dividend / divisor then return quotient
+
+
+
+
+
+
+
+
+
+
+
+
+
